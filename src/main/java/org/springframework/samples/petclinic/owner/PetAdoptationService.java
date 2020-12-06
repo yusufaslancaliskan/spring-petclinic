@@ -15,7 +15,6 @@ public class PetAdoptationService {
 	@Autowired
 	private OwnerRepository ownerRepository;
 
-	@Transactional
 	public void adoptAPet() {
 		Owner owner = saveOwner();
 		savePet(owner);
