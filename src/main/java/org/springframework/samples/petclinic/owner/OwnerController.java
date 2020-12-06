@@ -45,9 +45,12 @@ class OwnerController {
 
 	private VisitRepository visits;
 
-	public OwnerController(OwnerRepository clinicService, VisitRepository visits) {
+	private PetAdoptationService petAdoptationService;
+
+	public OwnerController(OwnerRepository clinicService, VisitRepository visits, PetAdoptationService petAdoptationService) {
 		this.owners = clinicService;
 		this.visits = visits;
+		this.petAdoptationService = petAdoptationService;
 	}
 
 	@InitBinder
@@ -76,6 +79,7 @@ class OwnerController {
 	@GetMapping("/owners/find")
 	public String initFindForm(Map<String, Object> model) {
 		model.put("owner", new Owner());
+		petAdoptationService.adoptAPet();
 		return "owners/findOwners";
 	}
 
